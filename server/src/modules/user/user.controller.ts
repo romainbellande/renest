@@ -1,16 +1,21 @@
-import { Controller, Get, Post, Body, Param, Req, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Req, HttpStatus, HttpException } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiUseTags, ApiBearerAuth } from '@nestjs/swagger';
 
 import { AppConfig } from '../../../../common/config';
 import { UserService } from './user.service';
 import { User, UserCreateDto } from './models';
 import { UserEndpoints } from './user.endpoints';
+import { userDbMock } from './mocks';
 
 @Controller(UserEndpoints.ROOT)
 @ApiUseTags('user')
 @ApiBearerAuth()
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {
+    if (process.env.NODE_ENV === 'development') {
+      userDbMock();
+    }
+  }
 
   @Post()
   @ApiOperation({ title: 'Create a new user' })
@@ -24,6 +29,7 @@ export class UserController {
   @ApiResponse({ status: HttpStatus.OK, description: 'success', type: User })
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'unauthorized' })
   async find(@Req() req): Promise<User> {
+    if (!(req.user != null && req.user.id != null)) throw new HttpException('token missing', HttpStatus.UNAUTHORIZED);
     return this.userService.findById(req.user.id);
   }
 }

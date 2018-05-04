@@ -12,9 +12,10 @@ export const databaseProviders = [
       port: AppConfig.POSTGRES_PORT,
       username: AppConfig.POSTGRES_USERNAME,
       password: AppConfig.POSTGRES_PASSWORD,
-      database: AppConfig.POSTGRES_DB_NAME,
+      database: AppConfig.POSTGRES_DB_NAME + process.env.NODE_ENV === 'development' ? '-test' : '',
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
+      dropSchema: (process.env.NODE_ENV === 'development'),
     }),
   },
 ];

@@ -8,6 +8,8 @@
     "no-var-requires": false,
     "object-literal-sort-keys": false,
     "no-console": [true, "log"],
-    "jsx-boolean-value": false
+    "jsx-boolean-value": false,
+    "no-reference": false,
+    "no-implicit-dependencies": false,
   }
 }

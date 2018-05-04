@@ -15,20 +15,13 @@ import { HttpExceptionFilter } from './filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(ApplicationModule);
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'public')));
+  }
   app.use(bodyParser.json());
-  app.use(express.static(path.join(__dirname, 'public')));
-
   app.setGlobalPrefix(AppConfig.API_URL);
   app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
-
-  app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.json({
-        message: err.message,
-        error: err,
-    });
-  });
 
   const options = new DocumentBuilder()
     .setTitle(AppConfig.APP_NAME)
@@ -39,6 +32,16 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/api/doc', app, document);
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use((req: express.Request, res, next) => {
+      if (req.url.indexOf(AppConfig.API_URL) !== 0) {
+        res.sendFile(path.join(__dirname, 'public/app.html'));
+      } else {
+        next();
+      }
+    });
+  }
 
   await app.listen(AppConfig.PORT)
     .then(() => {

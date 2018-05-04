@@ -17,14 +17,18 @@ export class UserService {
       throw new HttpException(errors.toString(), HttpStatus.BAD_REQUEST);
     } else {
       return this.userRepository.save(user)
+      .then(({password, ...userCreated}) => userCreated)
       .catch(({message}) => {
         throw new HttpException(message, HttpStatus.BAD_REQUEST);
       });
     }
   }
 
-  async findById(userId: string): Promise<User> {
-    return await this.userRepository.findOneById(userId, { select: ['id', 'username', 'email'] });
+  async findById(userId: number): Promise<User> {
+    return await this.userRepository.findOneById(userId, { select: ['id', 'username', 'email'] })
+    .catch((message) => {
+      throw new HttpException(message, HttpStatus.UNAUTHORIZED);
+    });
   }
 
   async findAll(): Promise<User[]> {

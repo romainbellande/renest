@@ -54,6 +54,6 @@ module.exports = merge(common, {
         BROWSER: JSON.stringify(true),
         NODE_ENV: JSON.stringify('production')
       },
-    })
+    }),
   ]
 });

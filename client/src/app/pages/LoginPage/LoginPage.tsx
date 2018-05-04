@@ -13,7 +13,7 @@ import { AuthActions, IAuthState } from '../../redux/auth';
 import { ICredentials, IUser } from '../../modules';
 
 export interface ILoginPage extends RouteComponentProps<any> {
-  auth: IAuthState;
+  auth?: IAuthState;
   connection?: (credentials: ICredentials) => any;
 }
 

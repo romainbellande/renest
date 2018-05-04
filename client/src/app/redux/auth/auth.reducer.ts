@@ -14,7 +14,7 @@ export const authReducer: Reducer<IAuthState> = (state = initialState, action: A
     case AuthActions.loginFromCookies.success(): {
       return {
         ...state,
-        token: action.payload,
+        ...action.payload,
         loginFromCookiesStatus: 'success',
       };
     }

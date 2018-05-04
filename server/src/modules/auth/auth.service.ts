@@ -26,7 +26,7 @@ export class AuthService {
       });
   }
 
-  validateUser(userId: { id: string }): Promise<boolean> {
+  validateUser(userId: { id: number }): Promise<boolean> {
     return this.userRepository.findOneById(userId)
       .then(() => true)
       .catch(() => false);
