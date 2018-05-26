@@ -1,2 +1,1 @@
-export * from './interfaces';
-export * from './auth.endpoints';
+export * from './auth.module';

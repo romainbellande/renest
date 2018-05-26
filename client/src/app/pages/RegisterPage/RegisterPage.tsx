@@ -3,7 +3,7 @@ import './RegisterPage.scss';
 import * as React from 'react';
 import { Form, FormApi, Text } from 'react-form';
 
-import { IUserCreate } from '../../modules';
+import { IUserCreate } from '../../common';
 import { Validators } from '../../lib';
 import { UserActions } from '../../redux/user';
 import { IAuthState } from '../../redux/auth';

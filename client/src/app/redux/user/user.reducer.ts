@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { AuthActions } from '../auth/auth.actions';
 import { UserAction, UserActions } from './user.actions';
 import { initialState, IUserState } from './user.state';
-import { IUser } from '../../modules';
+import { IUser } from '../../common';
 
 export const userReducer: Reducer<IUserState> = (state = initialState, action: UserAction) => {
   switch (action.type) {

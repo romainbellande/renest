@@ -9,7 +9,8 @@
     "server:prod": "http-server -P http://127.0.0.1:3000 --cors -p 5000 ../server/dist/server/src/public/",
     "test:e2e": "codeceptjs run",
     "test:unit": "cross-env NODE_ENV=development jest --coverage -c jest-config.json",
-    "test": "npm run test:e2e && npm run test:unit"
+    "test": "npm run test:e2e && npm run test:unit",
+    "test:intall:unit": "codeceptjs init"
   },
   "dependencies": {
     "@types/react-bootstrap": "^0.32.0",
@@ -73,6 +74,8 @@
     "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
     "codeceptjs": "^1.1.8",
+    "codeceptjs-puppeteer": "^1.2.0",
+    "codeceptjs-webdriverio": "^1.1.0",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",

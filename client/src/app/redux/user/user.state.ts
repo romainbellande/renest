@@ -1,4 +1,4 @@
-import { IUser } from '../../modules';
+import { IUser } from '../../common';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IUserState extends IUser {}

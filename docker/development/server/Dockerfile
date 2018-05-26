@@ -1,22 +1,19 @@
-FROM nginx:alpine
+FROM node:alpine
 
-LABEL Romain Bellande
+EXPOSE 3000
+EXPOSE 5432
 
+# system
 RUN apk update
-RUN apk add git
-# Install rc-service
-RUN apk add openrc --no-cache
-# Setup script
-ADD setup.sh .
-RUN chmod +x setup.sh
-# Genpasswd script
-ADD genpasswd.sh .
-RUN chmod +x genpasswd.sh
-RUN apk add apache2-utils
-# Install zsh
 RUN apk add zsh
-RUN apk add curl
 RUN apk add bash
+RUN apk add curl
+RUN apk add python
+RUN apk add python2
+RUN apk add gcc
+RUN apk add g++
+RUN apk add make
+RUN apk add git
 RUN bash -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" \
     && sed -i -- 's/robbyrussell/wezm+/g' /root/.zshrc \
     && echo "source /root/.oh-my-zsh/oh-my-zsh.sh" >> ~/.zshrc \
@@ -29,12 +26,14 @@ RUN echo 'export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.composer/v
     && echo "alias ll='ls -l'" >> ~/.bashrc \
     && echo "alias la='ls -la'" >> ~/.bashrc
 
-# Install client
-WORKDIR /var/www
+# application
+WORKDIR /srv/app
 ADD package.json .
-ADD common ./common
-ADD client ./client
+ADD yarn.lock .
+RUN yarn
+ADD server server
 
-EXPOSE 80
+WORKDIR /srv/app/server
+RUN yarn
 
-CMD ./setup.sh
+CMD [ "npm", "start" ]

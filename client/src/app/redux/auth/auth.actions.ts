@@ -1,7 +1,7 @@
 // tslint:disable:max-classes-per-file
 import { Action } from 'redux';
 
-import { IAuth, ICredentials } from '../../modules';
+import { IAuth, ICredentials } from '../../common';
 import { EntityTypeGen, TypeStatus } from '../lib/entity';
 import { ReduxActions } from '../lib';
 import { IAuthState } from './auth.state';

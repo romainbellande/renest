@@ -4,17 +4,15 @@ import { ApiOperation, ApiResponse, ApiUseTags, ApiBearerAuth } from '@nestjs/sw
 import { AppConfig } from '../../../../common/config';
 import { UserService } from './user.service';
 import { User, UserCreateDto } from './models';
-import { UserEndpoints } from './user.endpoints';
-import { userDbMock } from './mocks';
+import { UserEndpoints } from '../common';
+import { defaultUserDbMock } from './mocks';
 
 @Controller(UserEndpoints.ROOT)
 @ApiUseTags('user')
 @ApiBearerAuth()
 export class UserController {
   constructor(private readonly userService: UserService) {
-    if (process.env.NODE_ENV === 'development') {
-      userDbMock();
-    }
+    defaultUserDbMock();
   }
 
   @Post()

@@ -9,8 +9,8 @@
     "start:prod": "node dist/server.js",
     "dist": "npm run prestart:prod",
     "debug": "node --nolazy --debug-brk=5858 ./index.js",
-    "unit": "cross-env NODE_ENV=development jest --coverage -c jest-config.json",
-    "e2e": "cross-env NODE_ENV=development jest --coverage -c jest-e2e-config.json",
+    "test:unit": "cross-env NODE_ENV=development jest --coverage -c jest-config.json",
+    "test:e2e": "cross-env NODE_ENV=development jest --coverage -c jest-e2e-config.json",
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {

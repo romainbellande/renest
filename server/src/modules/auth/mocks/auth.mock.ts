@@ -1,4 +1,4 @@
-import { IAuth } from '../interfaces';
+import { IAuth } from '../../common';
 
 export const authMock: IAuth = {
   expiresIn: 100,

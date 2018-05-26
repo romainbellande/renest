@@ -2,7 +2,7 @@
 
 import { Action } from 'redux';
 
-import { IUser, IUserCreate } from '../../modules';
+import { IUser, IUserCreate } from '../../common';
 import { EntityTypeGen, TypeStatus } from '../lib/entity';
 
 const typeGen = new EntityTypeGen('user');

@@ -3,7 +3,7 @@ import { ApiOperation, ApiResponse, ApiUseTags, ApiBearerAuth } from '@nestjs/sw
 
 import { AuthService } from './auth.service';
 import { AuthDto, CredentialsDto } from './models';
-import { AuthEndpoints } from './auth.endpoints';
+import { AuthEndpoints } from '../common';
 
 @Controller(AuthEndpoints.ROOT)
 @ApiUseTags('auth')

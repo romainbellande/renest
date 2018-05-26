@@ -1,6 +1,6 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 
-import { IUserCreate } from '../interfaces';
+import { IUserCreate } from '../../common';
 
 export class UserCreateDto implements IUserCreate {
   @ApiModelProperty()

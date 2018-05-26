@@ -1,7 +1,7 @@
-import { IUser } from '../interfaces/user.interface';
+import { IUser } from '../../common';
 
 export const userMock: IUser = {
-  id: 1,
+  id: 0,
   username: 'johndoe',
   email: 'john.doe@example.com',
 };

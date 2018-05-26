@@ -7,12 +7,11 @@ import { AuthService } from './auth.service';
 import { authMock, credentialsMock, } from './mocks';
 import { databaseProviders } from '../database/database.providers';
 import { userProviders } from '../user/user.providers';
-import { userDbMock } from '../user/mocks';
+import { UserDbMock } from '../user/mocks';
 
 describe('Authcontroller', () => {
   let authController: AuthController;
   let authService: AuthService;
-  let connection: Connection;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -24,14 +23,14 @@ describe('Authcontroller', () => {
       ],
     }).compile();
 
-    await userDbMock();
     authService = module.get<AuthService>(AuthService);
     authController = module.get<AuthController>(AuthController);
+    await UserDbMock.create();
   });
 
   afterEach((async () => {
-    connection = getConnection();
-    connection.close();
+    await UserDbMock.remove();
+    getConnection().close();
   }));
 
   it('should get token via credentials', async () => {

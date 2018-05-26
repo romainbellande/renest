@@ -2,7 +2,7 @@ import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
-import { IUser, IUserCreate, UserEndpoints } from '../../modules';
+import { IUser, IUserCreate, UserEndpoints } from '../../common';
 import { getApi } from '../../helpers';
 
 export class UserService {

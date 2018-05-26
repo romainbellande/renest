@@ -1,5 +1,6 @@
 # Build Folder
 build
+src
 
 # Logs
 logs
@@ -42,3 +43,5 @@ typings
 .git
 
 dist
+pgdata
+.env

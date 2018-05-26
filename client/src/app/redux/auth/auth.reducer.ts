@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { IAuth } from '../../modules';
+import { IAuth } from '../../common';
 import { AuthAction, AuthActions } from './auth.actions';
 import { IAuthState, initialState } from './auth.state';
 

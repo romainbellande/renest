@@ -25,7 +25,6 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle(AppConfig.APP_NAME)
-    .setDescription('The cats API description')
     .setVersion(`v${ AppConfig.API_VERSION }`)
     .setBasePath(AppConfig.API_URL)
     .addBearerAuth()
@@ -53,7 +52,7 @@ async function bootstrap() {
         chalk.green('[') +
         chalk.blue(AppConfig.PORT.toString()) +
         chalk.green('] ') +
-        `http://localhost:${ AppConfig.PORT }`,
+        `http://${ AppConfig.HOST }:${ AppConfig.PORT }`,
       );
     })
     .catch(console.error);

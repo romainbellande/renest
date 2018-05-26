@@ -1,6 +1,6 @@
 import { RequestMethod } from '@nestjs/common';
 
-import { UserEndpoints } from '../user';
+import { UserEndpoints } from '../common';
 
 export const authRoutes = [
   { path: `/${ UserEndpoints.ROOT }`, method: RequestMethod.GET },

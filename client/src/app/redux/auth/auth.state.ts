@@ -1,4 +1,4 @@
-import { IAuth } from '../../modules';
+import { IAuth } from '../../common';
 // tslint:disable-next-line:no-empty-interface
 export interface IAuthState extends IAuth {
   loginFromCookiesStatus: string;

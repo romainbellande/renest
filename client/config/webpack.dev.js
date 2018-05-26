@@ -15,8 +15,9 @@ module.exports = merge(common, {
     hot: true,
     historyApiFallback: true,
     proxy: {
-      '/api/v1': 'http://localhost:3000'
-    }
+      '/api/v1': `http://${ process.env.SERVER_HOST || 'localhost' }:${process.env.SERVER_PORT || 3000}`
+    },
+    host: process.env.HOST || '127.0.0.1'
   },
   module: {
     rules: [

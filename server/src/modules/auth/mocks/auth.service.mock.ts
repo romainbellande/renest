@@ -14,7 +14,6 @@ export class AuthServiceMock {
   }
 
   validateUser(userId: { id: number }) {
-    console.log('true');
     return true;
   }
 }

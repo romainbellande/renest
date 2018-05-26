@@ -1,7 +1,7 @@
-import { IUserCreate } from '../interfaces';
+import { IUserCreate } from '../../common';
 
 export const userCreateMock: IUserCreate = {
   username: 'johndoe',
   email: 'john.doe@example.com',
-  password: 'johnjohn',
+  password: 'johndoe',
 };

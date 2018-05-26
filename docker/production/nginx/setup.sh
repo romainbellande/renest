@@ -5,4 +5,5 @@ do
     printf "%c" "."
 done
 printf "%s" "connection succeed !"
-exec ./genpasswd.sh
+nginx -g "daemon off;"
+# exec ./genpasswd.sh

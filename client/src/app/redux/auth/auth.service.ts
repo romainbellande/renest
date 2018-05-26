@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as Cookies from 'universal-cookie';
 
 import { getApi } from '../../helpers';
-import { IAuth, AuthEndpoints, ICredentials } from '../../modules';
+import { IAuth, AuthEndpoints, ICredentials } from '../../common';
 
 export class AuthService {
   public login(credentials: ICredentials): Observable<IAuth> {

@@ -1,4 +1,4 @@
-import { IAuth } from '../../modules';
+import { IAuth } from '../../common';
 
 export const authMock: IAuth = {
   expiresIn: null,

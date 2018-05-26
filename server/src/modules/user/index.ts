@@ -1,2 +1,1 @@
-export * from './interfaces';
-export * from './user.endpoints';
+export * from './user.module';

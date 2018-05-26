@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { IsAlphanumeric, IsEmail, MinLength } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 
-import { IUser } from '../interfaces';
+import { IUser } from '../../common';
 
 @Entity()
 export class User implements IUser {
@@ -11,11 +11,11 @@ export class User implements IUser {
   id: number;
 
   @ApiModelProperty()
-  @Column('text')
+  @Column('text', { unique: true })
   username: string;
 
   @ApiModelProperty()
-  @Column('text')
+  @Column('text', { unique: true })
   @IsEmail()
   email: string;
 

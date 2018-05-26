@@ -7,7 +7,7 @@ import { getConnection } from 'typeorm';
 import { AuthModule } from '../src/modules/auth/auth.module';
 import { AuthService } from '../src/modules/auth/auth.service';
 import { AuthServiceMock, credentialsMock, authMock} from '../src/modules/auth/mocks';
-import { userDbMock } from '../src/modules/user/mocks';
+import { UserDbMock } from '../src/modules/user/mocks';
 
 describe('Auth', () => {
   const server = express();
@@ -16,18 +16,19 @@ describe('Auth', () => {
 
   beforeAll(async () => {
     const module = await Test.createTestingModule({
-        imports: [AuthModule],
-      })
-      .overrideComponent(AuthService).useClass(AuthServiceMock)
-      .compile();
+      imports: [AuthModule],
+    })
+    .overrideComponent(AuthService).useClass(AuthServiceMock)
+    .compile();
 
-    await userDbMock();
+    await UserDbMock.create();
     app = module.createNestApplication(server);
     await app.init();
     authService = module.get<AuthService>(AuthService);
   });
 
-  afterAll(() => {
+  afterAll(async () => {
+    await UserDbMock.remove();
     getConnection().close();
     app.close();
   });

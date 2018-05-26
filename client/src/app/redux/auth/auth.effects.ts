@@ -4,7 +4,7 @@ import { of } from 'rxjs/observable/of';import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
 
-import { IAuth } from '../../modules';
+import { IAuth } from '../../common';
 import { AuthActions, AuthConnect } from './auth.actions';
 import { AuthService } from './auth.service';
 
