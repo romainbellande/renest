@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:9-alpine
 
 EXPOSE 9000
 
@@ -61,9 +61,10 @@ WORKDIR /srv/app
 ADD package.json .
 ADD yarn.lock .
 RUN yarn
-ADD client client
 
 WORKDIR /srv/app/client
+ADD ./client/package.json .
+ADD ./client/yarn.lock .
 RUN yarn
 RUN npm rebuild node-sass
 RUN npm run test:intall:unit

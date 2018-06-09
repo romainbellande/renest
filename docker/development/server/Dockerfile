@@ -31,9 +31,10 @@ WORKDIR /srv/app
 ADD package.json .
 ADD yarn.lock .
 RUN yarn
-ADD server server
 
 WORKDIR /srv/app/server
+ADD ./server/package.json .
+ADD ./server/yarn.lock .
 RUN yarn
 
 CMD [ "npm", "start" ]

@@ -10,22 +10,24 @@ const typeGen = new EntityTypeGen('auth');
 const actions = new ReduxActions('auth');
 
 export class AuthActions {
-  public static connect = actions.setAction('connect')
-  static loginFromCookies = actions.setAction('login from cookies');
+  public static CONNECT = typeGen.get('Connect');
+  public static CONNECT_FAILED = typeGen.get('Connect', TypeStatus.FAILED);
+  public static CONNECT_SUCCESS = typeGen.get('Connect', TypeStatus.SUCCESS);
+  static loginFromCookies = actions.setAction('connect from cookies');
 }
 
 export class AuthConnect implements Action {
-  public readonly type = AuthActions.connect.default();
+  public readonly type = AuthActions.CONNECT;
   constructor(public payload: ICredentials) {}
 }
 
 export class AuthConnectFailed implements Action {
-  public readonly type = AuthActions.connect.failed();
+  public readonly type = AuthActions.CONNECT_FAILED;
   constructor(public payload: any) {}
 }
 
 export class AuthConnectSuccess implements Action {
-  public readonly type = AuthActions.connect.success();
+  public readonly type = AuthActions.CONNECT_SUCCESS;
   constructor(public payload: IAuth) {}
 }
 
