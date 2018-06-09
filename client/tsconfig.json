@@ -22,7 +22,6 @@
     "../common/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "src/**/**.spec.*"
+    "node_modules"
   ]
 }

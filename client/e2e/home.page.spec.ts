@@ -10,8 +10,8 @@ const login = (I) => {
   I.dontSeeInCurrentUrl('/login');
 }
 
-Scenario('access to settings', (I) => {
+Scenario('access to dashboard', (I) => {
   login(I);
-  I.click('Settings');
-  I.seeInCurrentUrl('settings');
+  I.click('Dashboard');
+  I.seeInCurrentUrl('/');
 });

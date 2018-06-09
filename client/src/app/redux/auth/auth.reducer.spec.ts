@@ -15,7 +15,7 @@ describe('AuthReducer', () => {
   it('should handle loginFormCookie', () => {
     expect(authReducer(undefined, {
       type: AuthActions.loginFromCookies.success(),
-      payload: authMock
-    })).toEqual({...authMock, loginFromCookiesStatus: 'success'})
+      payload: ''
+    })).toEqual({token: '', expiresIn: null, loginFromCookiesStatus: 'success'})
   });
 });
