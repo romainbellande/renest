@@ -17,7 +17,7 @@ interface IProps {
 @connect(
   ({auth}) => ({auth}),
   (dispatch) => ({
-    register: (userCreate) => dispatch({ type: UserActions.REGISTER, payload: userCreate })
+    register: (userCreate) => dispatch({ type: UserActions.register.default(), payload: userCreate })
   })
 )
 export class RegisterPage extends React.Component<IProps, {}> {

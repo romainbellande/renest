@@ -7,7 +7,7 @@ import { IUser } from '../../common';
 
 export const userReducer: Reducer<IUserState> = (state = initialState, action: UserAction) => {
   switch (action.type) {
-    case AuthActions.CONNECT_SUCCESS: {
+    case AuthActions.connect.success(): {
       const {id, username, email} = action.payload as IUser;
       return {id, username, email};
     }

@@ -21,7 +21,7 @@ export interface ILoginPage extends RouteComponentProps<any> {
 @connect(
   (state) => ({ auth: state.auth }),
   (dispatch) => ({
-    connection: (payload: ICredentials) => dispatch({ type: AuthActions.CONNECT, payload }),
+    connection: (payload: ICredentials) => dispatch({ type: AuthActions.connect.default(), payload }),
   }),
 )
 export class LoginPage extends React.Component<ILoginPage, {}> {

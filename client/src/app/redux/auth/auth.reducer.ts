@@ -6,7 +6,7 @@ import { IAuthState, initialState } from './auth.state';
 
 export const authReducer: Reducer<IAuthState> = (state = initialState, action: AuthAction) => {
   switch (action.type) {
-    case AuthActions.CONNECT_SUCCESS: {
+    case AuthActions.connect.success(): {
       const {expiresIn, token} = action.payload as IAuthState;
       return {...state, token, expiresIn};
     }
@@ -14,7 +14,7 @@ export const authReducer: Reducer<IAuthState> = (state = initialState, action: A
     case AuthActions.loginFromCookies.success(): {
       return {
         ...state,
-        ...action.payload,
+        token: action.payload,
         loginFromCookiesStatus: 'success',
       };
     }

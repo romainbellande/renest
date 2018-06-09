@@ -7,22 +7,19 @@ import { switchMap } from 'rxjs/operators';
 import { IAuth } from '../../common';
 import { AuthActions, AuthConnect } from './auth.actions';
 import { AuthService } from './auth.service';
+import { reduxEffect } from '../lib';
 
 const authService = new AuthService();
 
-const connect$ = (action$: ActionsObservable<AuthConnect>) =>
-  action$.pipe(
-    ofType(AuthActions.CONNECT),
-    switchMap(({payload}) => authService.login(payload)
-    .map((payload: IAuth) => ({ payload, type: AuthActions.CONNECT_SUCCESS }))
-    .catch((payload: any) => of({ payload, type: AuthActions.CONNECT_SUCCESS }))));
+const connect$ = reduxEffect<AuthConnect>(
+  AuthActions.connect,
+  authService.login,
+  { withParams: true }
+);
 
-const loginFromCookies$ = (action$: ActionsObservable<any>) =>
-  action$.pipe(
-    ofType(AuthActions.loginFromCookies.default()),
-    switchMap(() => authService.getTokenCookie()
-      .map((auth) => ({payload: auth, type: AuthActions.loginFromCookies.success()}))
-      .catch((payload) => of({payload, type: AuthActions.loginFromCookies.failed()}))));
-
+const loginFromCookies$ = reduxEffect(
+  AuthActions.loginFromCookies,
+  authService.getTokenCookie
+)
 
 export const authEffects = combineEpics(connect$, loginFromCookies$);
